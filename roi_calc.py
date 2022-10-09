@@ -1,7 +1,6 @@
 import locale
 locale.setlocale( locale.LC_ALL, '' )
 
-
 class ROI():
 
     # *** Initial attributes ***
@@ -30,14 +29,14 @@ class ROI():
 
     closing_costs = 0           # .015 of property
     rehab = 0                   # .035 of property
-    # This will be closing costs, rehab, and down payment added together
-    TOTAL_INVESTMENT = 0
+    TOTAL_INVESTMENT = 0        # This will be closing costs, rehab, and down payment added together
 
 # *** RETURN ON INVESTMENT ***
 
     roi = 0
 
     def setPropertyPrice(self):
+        print("Welcome to your personal ROI calculator!\n")
         self.property = int(
             input("How much are you paying for the entire property?: "))
 
@@ -102,17 +101,22 @@ class ROI():
         return self.roi
 
     def summarize(self):
-        print("Based on what you've entered, here is a complete summary of your potential investment:")
+        print("Based on what you've entered, here is a complete summary of your potential investment:\n")
         print(f'Property price: {locale.currency(self.property, grouping=True).rstrip("0")}')
         print(f'Down payment: {locale.currency(self.getDownPayment(), grouping=True).rstrip("0")} Ideally, this is 20% of the property price.')
+        print(f'Mortgage: {self.getMortgage()}\n(Mortgage was calculated as property price - down payment at 5% interest over a 30 year span)')
         print(f'Rent and total income : {locale.currency(self.rent, grouping=True).rstrip("0")}')
-        print(f'Total expenses: {locale.currency(self.getTotalExpenses(), grouping=True).rstrip("0")}\n(This number includes taxes, insurance, a monthly allotment for any future vacancies and repairs, a montly payment for the property manager, and the mortgage)')
+        print(f'Total expenses: {locale.currency(self.getTotalExpenses(), grouping=True).rstrip("0")}\n(This number includes percentages for taxes, insurance, a monthly allotment for any future vacancies and repairs, a monthly payment for the property manager, and the mortgage)')
         print(f'Cash flow every month after expenses: {locale.currency(self.getCashFLow(), grouping=True).rstrip("0")}')
-        print(f'Total investment: {locale.currency(self.getTotalInvestment(), grouping=True).rstrip("0")}\n (This number includes closing costs, down payment, and a modest percentage allocated for any rehab repairs done to the property)')
+        print(f'Total investment: {locale.currency(self.getTotalInvestment(), grouping=True).rstrip("0")}\n (This number includes closing costs, down payment, and a modest percentage allocated for any rehab repairs done to the property)\n')
         print(f'Based on above info, the ROI for this property is an estimated {self.getROI()} percent.')
 
-example = ROI()
-example.setPropertyPrice()
-example.setRent()
-example.setMisc()
-example.summarize()
+    def run(self):
+
+        self.setPropertyPrice()
+        self.setRent()
+        self.setMisc()
+        self.summarize()
+
+duplex = ROI()
+duplex.run()

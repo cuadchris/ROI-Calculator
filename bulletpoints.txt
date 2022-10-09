@@ -35,4 +35,4 @@ TOTAL_EXPENSES = sum(tax, insurance, vacancy, repairs, cap_exp, property_mangage
 
 **TOTAL_INVESTMENT** = sum(down_payment, closing_costs, rehab)
 
-ROI = CASH_FLOW / TOTAL_INVESTMENT
+ROI = ANNUAL_CASH_FLOW / TOTAL_INVESTMENT
